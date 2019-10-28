@@ -25,7 +25,7 @@ def histogram(text_file):
 
 def histogram_dict(text_file):
     '''Returns dictionary'''
-    
+
     histogram = {}
     text = read_file(text_file)
 
@@ -42,7 +42,7 @@ def histogram_dict(text_file):
 
 
 def unique_words(histogram):
-    '''Returns total count of unique words based off of histogram data'''
+    '''Returns total count of unique words based off of histogram data for list of lists.'''
 
     count = 0
     for list in histogram:
@@ -51,7 +51,7 @@ def unique_words(histogram):
     return count
 
 def frequency(word, histogram):
-    '''Returns how many times a specific word is in a histogram data set'''
+    '''Returns how many times a specific word is in a histogram data set for list of lists'''
 
     for list in histogram:
         if list[0] == word:
@@ -59,13 +59,13 @@ def frequency(word, histogram):
 
 
 if __name__ == '__main__':
-    # histogram = histogram('txt_files/histo_sample_song.txt')
-    # word = 'it'
-    # frequency = frequency(word, histogram)
-    # unique_words = unique_words(histogram)
+    histogram = histogram('txt_files/histo_sample_song.txt')
+    word = 'it'
+    frequency = frequency(word, histogram)
+    unique_words = unique_words(histogram)
     # histogram = histogram(text)
+    # histogram = histogram_dict('txt_files/histo_sample_song.txt')
 
     print(histogram)
-    # print(f'Amount of times {word} appeared in text: {frequency}')
-    # print(f'Unique Words: {unique_words}')
-    histogram = histogram_dict('txt_files/histo_sample_song.txt')
+    print(f'Amount of times {word} appeared in text: {frequency}')
+    print(f'Unique Words: {unique_words}')
