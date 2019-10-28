@@ -24,11 +24,13 @@ def get_words(arg):
         for i in range(int(arg)):
             random_words.append(random.choice(words))
 
+        # random_words = [random.choice(words) for i in range(int(arg))]
+
         return ' '.join(random_words) + '.'
 
 
 
 if __name__ == '__main__':
-    num = sys.argv[1:3]
+    num = sys.argv[1:]
     sentence = get_words(num[0])
     print(sentence)

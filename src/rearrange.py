@@ -5,9 +5,8 @@ def rearrange(arg):
     #move all arguments into a list
     args = list(arg)
 
-    #Loop through each word in the list
+    #Loop through length of list
     for i in range(len(args)):
-
         l = random.randint(0, i)
 
         #Based this off of example in bottom of the file
