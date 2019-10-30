@@ -1,5 +1,4 @@
 def read_file(text_file):
-    print(text_file)
     with open(text_file, 'r') as f:
         words = f.read().split()
 
