@@ -3,6 +3,7 @@ import sys
 from histogram import read_file, histogram_dict
 
 def get_count(histogram):
+    ''' Add up all values in histogram'''
     count = 0
     for key, value in histogram.items():
         count += value
@@ -11,6 +12,8 @@ def get_count(histogram):
 
 
 def prob_word(histogram, count):
+    '''For each key-value pair, if random index chosen is less than or equal to the total value,
+       return the word'''
 
     total = 0
     index = random.randint(1, count)
@@ -27,6 +30,8 @@ def prob_word(histogram, count):
 
 
 def main_sample(text_file):
+    '''Calling the function that returns the random word '''
+    
     # print('!!!')
     histogram = histogram_dict(text_file)
     count = get_count(histogram)
