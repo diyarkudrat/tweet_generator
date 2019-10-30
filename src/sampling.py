@@ -35,6 +35,7 @@ def main_sample(text_file):
     word = prob_word(histogram, count)
     print(word)
 
+    # print(count)
 if __name__ == '__main__':
     args = sys.argv[1]
 
