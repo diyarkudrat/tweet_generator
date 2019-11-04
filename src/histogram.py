@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # frequency = frequency(word, histogram)
     # unique_words = unique_words(histogram_dict)
     # histogram = histogram(text)
-    histogram = histogram_dict('fish.txt')
+    histogram = histogram_dict('histo_sample_song.txt')
 
     print(histogram)
     # print(f'Amount of times {word} appeared in text: {frequency}')

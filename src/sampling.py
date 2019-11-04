@@ -31,20 +31,21 @@ def prob_word(histogram, count):
 
 def main_sample(text_file):
     '''Calling the function that returns the random word '''
-    
+
     # print('!!!')
     histogram = histogram_dict(text_file)
     count = get_count(histogram)
     # print('!!!')
 
     word = prob_word(histogram, count)
-    print(word)
+    display_word = print(word)
+    return display_word
 
     # print(count)
 if __name__ == '__main__':
-    args = sys.argv[1]
-
-    text_file = args
+    # args = sys.argv[1]
+    #
+    # text_file = args
 
     # text_file = '\Term_2\cs_1.2\tweet_generator\src\fish.txt'
     # text_file = 'fish.txt'
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     # count(histogram)
 
     # print(type(text_file))
+    text_file = 'fish.txt'
     main_sample(text_file)
 
     # print(count)
