@@ -39,6 +39,30 @@ def histogram_dict(text_file):
 
     return histogram
 
+def histogram_tuple(text_file):
+    '''Returns tuple'''
+    text = read_file(text_file)
+    amount = 0
+    histogram = []
+
+    for word in text:
+        updated = False
+        for tuple in histogram:
+            if tuple[0] == word:
+                amount = tuple[1] + 1
+                histogram.remove(tuple)
+                histogram.append((word, amount))
+                updated = True
+        if updated == False:
+            histogram.append((word, 1))
+
+    return histogram
+
+    # for each tuple in histogram, check if tuple[0] is in tuple. If it is, Add one to ammount.
+     # Then remove that tuple from histogram, add new tuple with amount.
+     # return Histogram at end
+
+
 
 def unique_words(histogram):
     '''Returns total count of unique words based off of histogram data for list of lists.'''
@@ -64,7 +88,7 @@ if __name__ == '__main__':
     # frequency = frequency(word, histogram)
     # unique_words = unique_words(histogram_dict)
     # histogram = histogram(text)
-    histogram = histogram_dict('histo_sample_song.txt')
+    histogram = histogram_tuple('histo_sample_song.txt')
 
     print(histogram)
     # print(f'Amount of times {word} appeared in text: {frequency}')
