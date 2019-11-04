@@ -10,7 +10,10 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     text_file = 'fish.txt'
-    return prob_word(histogram_dict(text_file), get_count(histogram_dict(text_file)))
+    histogram = histogram_dict(text_file)
+    count = get_count(histogram_dict(text_file))
+
+    return prob_word(histogram, count)
 
 
 if __name__ == '__main__':
