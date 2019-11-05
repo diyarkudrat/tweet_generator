@@ -1,7 +1,7 @@
 # from bson.objectid import ObjectId
 from flask import Flask, render_template, request, redirect, url_for
 import os
-from sampling import main_sample, prob_word, get_count
+from sampling import main_sample, prob_word, get_count, sentence
 from histogram import histogram_dict
 
 
@@ -12,9 +12,12 @@ app = Flask(__name__)
 def index():
     text_file = 'fish.txt'
     histogram = histogram_dict(text_file)
-    count = get_count(histogram_dict(text_file))
+    count = get_count(histogram)
 
-    return prob_word(histogram, count)
+    words_from_text = read_file('fish.txt')
+    total = len(words_from_text)
+
+    print(sentence(histogram, count, total))
 
 
 
