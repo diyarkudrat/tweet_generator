@@ -4,6 +4,7 @@ def read_file(text_file):
 
     return words
 
+
 # text = [1, 2, 1, 4, 5, 2]
 def histogram(text_file):
     ''' Returns a list of lists '''
@@ -24,13 +25,12 @@ def histogram(text_file):
 
     return histogram
 
-def histogram_dict(text_file):
+def histogram_dict(words_list):
     '''Returns dictionary'''
 
-    histogram = {}
-    text = read_file(text_file)
+    histogram = dict()
 
-    for word in text:
+    for word in words_list:
         if word in histogram:
             histogram[word] += 1
 
@@ -88,7 +88,8 @@ if __name__ == '__main__':
     # frequency = frequency(word, histogram)
     # unique_words = unique_words(histogram_dict)
     # histogram = histogram(text)
-    histogram = histogram_tuple('histo_sample_song.txt')
+    words_list = read_file('fish.txt')
+    histogram = histogram_dict(words_list)
 
     print(histogram)
     # print(f'Amount of times {word} appeared in text: {frequency}')

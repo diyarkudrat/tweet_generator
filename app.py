@@ -2,7 +2,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from sampling import main_sample, prob_word, get_count, sentence
-from histogram import histogram_dict
+from histogram import histogram_dict, read_file
+
 
 
 app = Flask(__name__)
@@ -10,15 +11,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    text_file = 'fish.txt'
+    text_file = read_file('histo_sample_song.txt')
     histogram = histogram_dict(text_file)
-    count = get_count(histogram)
+    count = get_count(histogram_dict(text_file))
+    total = len(text_file)
 
-    words_from_text = read_file('fish.txt')
-    total = len(words_from_text)
-
-    print(sentence(histogram, count, total))
-
+    ' '.join(sentence(count, total, histogram))
+    return sentence(count, total, histogram)
 
 
 if __name__ == '__main__':
