@@ -1,6 +1,6 @@
 import random
 import sys
-from histogram import read_file, histogram_dict, read_file
+from histogram import read_file, histogram_dict
 
 def get_count(histogram):
     ''' Add up all values in histogram'''
@@ -24,7 +24,7 @@ def prob_word(histogram, count):
         if index <= total:
             return key
 
-def sentence(histogram, count, total):
+def sentence(count, total, histogram):
     sentence = ""
 
     while count > 0:
@@ -32,55 +32,57 @@ def sentence(histogram, count, total):
         total_count = 0
 
         for key, value in histogram.items():
-            if value <= total_count:
+            if index <= total_count:
                 sentence += f' {key}'
+                break
 
             total_count += value
 
         count -= 1
 
-    return(sentence)
+    return sentence
 
-
-
-    # print('!!!')
-
-
+    # text_file = 'fish.txt'
+    # histogram = histogram_dict(text_file)
+    # count = get_count(histogram)
+    #
+    # words = []
+    # for i in range(arg):
+    #     words.append(prob_word(histogram, count))
+    #
+    # " ".join(words)
+    # return words
 
 def main_sample(text_file):
     '''Calling the function that returns the random word '''
 
-    # print('!!!')
-    histogram = histogram_dict(text_file)
-    count = get_count(histogram)
-    # print('!!!')
+    # # print('!!!')
+    # histogram = histogram_dict(text_file)
+    # count = get_count(histogram)
+    # # print('!!!')
+    #
+    # word = prob_word(histogram, count)
+    # display_word = print(word)
+    # return display_word
 
-    word = prob_word(histogram, count)
-    display_word = print(word)
-    return display_word
+    histogram = histogram_dict(text_file)
+    count = get_count(histogram_dict(text_file))
+    total = len(text_file)
+
+    ' '.join(sentence(count, total, histogram))
+    print(sentence(count, total, histogram))
 
 
     # print(count)
 if __name__ == '__main__':
-    # args = sys.argv[1]
+    # text_file = sys.argv[1:]
+    # words_from_text = read_file(text_file)
+    # total = len(words_from_text)
     #
-    # text_file = args
-
-    # text_file = '\Term_2\cs_1.2\tweet_generator\src\fish.txt'
-    # text_file = 'fish.txt'
-
-    # histogram = histogram_dict(text_file)
-    # count(histogram)
-
-    # print(type(text_file))
-    # text_file = 'fish.txt'
-    # main_sample(text_file)
-
-    text_file = 'fish.txt'
-    histogram = histogram_dict(text_file)
-    count = get_count(histogram)
-
-    words_from_text = read_file('fish.txt')
-    total = len(words_from_text)
-
-    print(sentence(histogram, count, total))
+    # histogram = histogram_dict(words_from_text)
+    # count = get_count(histogram)
+    #
+    # print(sentence(count, total, histogram))
+    
+    text_file = read_file('histo_sample_song.txt')
+    main_sample(text_file)
