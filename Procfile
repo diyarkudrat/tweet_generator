@@ -1,1 +1,1 @@
-gunicorn==19.7.1
+web: gunicorn app:app
