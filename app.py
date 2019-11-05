@@ -17,5 +17,6 @@ def index():
     return prob_word(histogram, count)
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)
