@@ -1,6 +1,6 @@
 import random
 import sys
-from histogram import read_file, histogram_dict
+from histogram import read_file, histogram_dict, read_file
 
 def get_count(histogram):
     ''' Add up all values in histogram'''
@@ -24,6 +24,24 @@ def prob_word(histogram, count):
         if index <= total:
             return key
 
+def sentence(histogram, count, total):
+    sentence = ""
+
+    while count > 0:
+        index = random.randint(0, total - 1)
+        total_count = 0
+
+        for key, value in histogram.items():
+            if value <= total_count:
+                sentence += f' {key}'
+
+            total_count += value
+
+        count -= 1
+
+    return(sentence)
+
+
 
     # print('!!!')
 
@@ -41,6 +59,7 @@ def main_sample(text_file):
     display_word = print(word)
     return display_word
 
+
     # print(count)
 if __name__ == '__main__':
     # args = sys.argv[1]
@@ -54,7 +73,14 @@ if __name__ == '__main__':
     # count(histogram)
 
     # print(type(text_file))
-    text_file = 'fish.txt'
-    main_sample(text_file)
+    # text_file = 'fish.txt'
+    # main_sample(text_file)
 
-    # print(count)
+    text_file = 'fish.txt'
+    histogram = histogram_dict(text_file)
+    count = get_count(histogram)
+
+    words_from_text = read_file('fish.txt')
+    total = len(words_from_text)
+
+    print(sentence(histogram, count, total))
