@@ -21,8 +21,11 @@ class MarkovChain(dict):
 
         super(MarkovChain, self).__init__()
 
+
         if words_list is not None:
             self.create_markov_chain(words_list)
+            self['start'] = Dictogram(['the'])
+            self['end'] = Dictogram(['.'])
 
 
     def create_markov_chain(self, words_list):
@@ -39,7 +42,7 @@ class MarkovChain(dict):
 
     def sentence_gen(self, length = 10):
 
-        sampled_word = random.choice(list(self))
+        sampled_word = random.choice(list(self.get('start')))
 
         sentence = sampled_word
 
@@ -48,6 +51,8 @@ class MarkovChain(dict):
 
             sentence += " " + sampled_word
 
+
+        sentence += random.choice(list(self.get('end')))
 
         return sentence
 
