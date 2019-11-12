@@ -15,41 +15,50 @@ def cleanup_text_file(file_name):
     return words_list
 
 
-def create_markov_chain(words_list):
+class MarkovChain(dict):
 
-    markov_dict = dict()
+    def __init__(self, words_list = None):
 
-    for index, word in enumerate(words_list):
+        super(MarkovChain, self).__init__()
 
-        if markov_dict.get(word) == None:
-            markov_dict[word] = Dictogram()
+        if words_list is not None:
+            self.create_markov_chain(words_list)
 
-        if index + 1 < len(words_list):
-            next = words_list[index + 1]
-            markov_dict.get(word).add_count(next)
 
-    return markov_dict
+    def create_markov_chain(self, words_list):
 
-def sentence_gen(markov_chain, length):
+        for index, word in enumerate(words_list):
 
-    sampled_word = random.choice(list(markov_chain))
+            if self.get(word) == None:
+                self[word] = Dictogram()
 
-    sentence = sampled_word
+            if index + 1 < len(words_list):
+                next = words_list[index + 1]
+                self.get(word).add_count(next)
 
-    for item in range(length - 1):
-        sampled_word = markov_chain[sampled_word].sample()
 
-        sentence += ' ' + sampled_word
+    def sentence_gen(self, length = 10):
 
-    return sentence
+        sampled_word = random.choice(list(self))
+
+        sentence = sampled_word
+
+        for item in range(length - 1):
+            sampled_word = self[sampled_word].sample()
+
+            sentence += " " + sampled_word
+
+
+        return sentence
 
 
 
 if __name__ == "__main__":
 
     words_list = cleanup_text_file('histo_sample_song.txt')
-    markov_chain = create_markov_chain(words_list)
+    markov_chain = MarkovChain(words_list = words_list)
 
-    print(sentence_gen(markov_chain, 10))
+    # print(markov_chain)
+    print(markov_chain.sentence_gen())
 
     # print(markov_chain(words_list))
