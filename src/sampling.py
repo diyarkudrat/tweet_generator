@@ -42,47 +42,18 @@ def sentence(count, total, histogram):
 
     return sentence
 
-    # text_file = 'fish.txt'
-    # histogram = histogram_dict(text_file)
-    # count = get_count(histogram)
-    #
-    # words = []
-    # for i in range(arg):
-    #     words.append(prob_word(histogram, count))
-    #
-    # " ".join(words)
-    # return words
 
 def main_sample(text_file):
     '''Calling the function that returns the random word '''
 
-    # # print('!!!')
     histogram = histogram_dict(text_file)
     count = get_count(histogram)
-    # # print('!!!')
-    #
+
     word = prob_word(histogram, count)
     display_word = print(word)
     return display_word
 
-    # histogram = histogram_dict(text_file)
-    # count = get_count(histogram_dict(text_file))
-    # total = len(text_file)
-    #
-    # ' '.join(sentence(count, total, histogram))
-    # print(sentence(count, total, histogram))
-
-
-    # print(count)
 if __name__ == '__main__':
-    # text_file = sys.argv[1:]
-    # words_from_text = read_file(text_file)
-    # total = len(words_from_text)
-    #
-    # histogram = histogram_dict(words_from_text)
-    # count = get_count(histogram)
-    #
-    # print(sentence(count, total, histogram))
 
     text_file = read_file('fish.txt')
     main_sample(text_file)

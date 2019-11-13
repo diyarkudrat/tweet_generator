@@ -56,9 +56,12 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
+        node = self.head
+
         count = 0
         while node is not None:
-            count += 0
+            count += 1
+            node = node.next
 
         return count
 
@@ -68,11 +71,33 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
 
+        new_node = Node(item)
+        if self.tail is not None:
+
+            #set current tail pointer to new node
+            self.tail.next = new_node
+
+            #point tail to new node
+            self.tail = new_node
+
+        else:
+            self.head = new_node
+            self.tail = new_node
+
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+        new_node = Node(item)
+        if self.head is not None:
+            new_node.next = self.head
+
+            self.head = new_node
+        else:
+            self.head = new_node
+            self.tail = new_node
+
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -80,6 +105,14 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
+
+        while self.head is not None:
+            if quality(self.head.data) == True:
+                return self.head.data
+            else:
+                node = self.head.next
+
+        return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -89,6 +122,36 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+        current_node = self.head
+        previous_node = None
+        while current_node is not None:
+
+            if item == current_node.data:
+                #If item we want removed is at head
+                if previous_node == None:
+
+                    #make head the next node
+                    self.head = current_node.next
+
+                    #If head is also the tail
+                    if current_node.next == None:
+                        self.tail = None
+
+                #if item we want removed is the tail
+                elif current_node.next == None:
+                    previous_node.next = None
+                    self.tail = previous_node
+
+                else:
+                    previous_node.next = current_node.next
+
+                return
+
+            else:
+                previous_node = current_node
+                current_node = current_node.next
+
+        raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
