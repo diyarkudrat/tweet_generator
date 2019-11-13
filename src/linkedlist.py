@@ -106,11 +106,12 @@ class LinkedList(object):
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
 
-        while self.head is not None:
-            if quality(self.head.data) == True:
-                return self.head.data
+        node = self.head
+        while node is not None:
+            if quality(node.data) == True:
+                return node.data
             else:
-                node = self.head.next
+                node = node.next
 
         return None
 
@@ -128,19 +129,19 @@ class LinkedList(object):
 
             if item == current_node.data:
                 #If item we want removed is at head
-                if previous_node == None:
+                if previous_node is None:
 
                     #make head the next node
                     self.head = current_node.next
 
                     #If head is also the tail
-                    if current_node.next == None:
-                        self.tail = None
+                    if current_node.next is None:
+                        self.tail = previous_node
 
                 #if item we want removed is the tail
-                elif current_node.next == None:
-                    previous_node.next = None
-                    self.tail = previous_node
+                elif current_node.next is None:
+                        previous_node.next = None
+                        self.tail = previous_node
 
                 else:
                     previous_node.next = current_node.next
