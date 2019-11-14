@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<!--Entire View Port-->
+
+<div class="container-fluid">
+  <div class="row">
+    <!--Left Side of View Port-->
+    <div class="col-md-8">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <!--Stores Content-->
+          <div class="col-12 white-text">
+            <div class="row">
+              <div class="col-md-4">
+                  <h1>Tweet Generator</h1>
+              </div>
+              <div class="col-md-8 form-group">
+              <form action='/' class="row justify-content-center">
+                  <div class="col-xs-3 p-2">
+                    <button type="submit" name="generate" class="btn btn-light">Generate! &#x2606;</button>
+                  </div>
+                  <div class="col-xs-3 p-2">
+                    <button type="submit" name="favorited" class="btn btn-light">&#x2606; Favorite</button>
+                    </div>
+
+                    <div class="col-xs-4 form-inline p-2">
+                    <label for="sentence">Sentence Length: </label>
+                    <input type="number" class="form-control" id="sentence" placeholder="10">
+                    </div>
+                </form>
+                </div>
+                </div>
+                <hr>
+                <h2>{{rand_sentence}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+  </div>
+</div>
+
+
+{% endblock %}
