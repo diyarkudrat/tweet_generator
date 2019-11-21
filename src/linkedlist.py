@@ -128,7 +128,7 @@ class LinkedList(object):
         while current_node is not None:
 
             if item == current_node.data:
-                #If item we want removed is at head
+
                 if previous_node is None:
 
                     #make head the next node
