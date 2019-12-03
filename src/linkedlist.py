@@ -55,7 +55,8 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes and count one for each
+        # Best case: 0(1) if the linked list only has one item
+        #Worst case: 0(n) if linked list has n amount of items
         node = self.head
 
         count = 0
@@ -68,8 +69,8 @@ class LinkedList(object):
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        # TODO: Append node after tail, if it exists
+        # Best case: 0(1)
+        # Worst case: 0(1)
 
         new_node = Node(item)
         if self.tail is not None:
@@ -87,8 +88,9 @@ class LinkedList(object):
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        # TODO: Prepend node before head, if it exists
+        # Best case: 0(1)
+        # Worst case: 0(1)
+
         new_node = Node(item)
         if self.head is not None:
             new_node.next = self.head
@@ -103,8 +105,8 @@ class LinkedList(object):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find item where quality(item) is True
-        # TODO: Check if node's data satisfies given quality function
+        # Best case: 0(1) under the condition that the first node is what we are looking for or if there's only one item in the linked list
+        # Worst case: 0(n) under the condition that the nth node is what we are looking for
 
         node = self.head
         while node is not None:
@@ -119,10 +121,10 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find one whose data matches given item
-        # TODO: Update previous node to skip around node with matching data
-        # TODO: Otherwise raise error to tell user that delete has failed
-        # Hint: raise ValueError('Item not found: {}'.format(item))
+        # Best case: 0(1) under the condition that the first node is what we are "deleting" or if there's only one item in the linked list
+        # Worst case: 0(n) under the condition that the nth node is what we are "deleting"
+
+
         current_node = self.head
         previous_node = None
         while current_node is not None:
