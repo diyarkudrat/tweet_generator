@@ -55,8 +55,9 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # Best case: 0(1) if the linked list only has one item
-        #Worst case: 0(n) if linked list has n amount of items
+
+        """ Best case: 0(1) if the linked list only has one item.
+        Worst case: 0(n) if linked list has n amount of items. """
         node = self.head
 
         count = 0
@@ -69,8 +70,10 @@ class LinkedList(object):
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # Best case: 0(1)
-        # Worst case: 0(1)
+
+        """ Best and Worst Case: O(1) because we are making a new node if the
+            list is empty or going straight to the tail node and adding a new node
+            after that. """
 
         new_node = Node(item)
         if self.tail is not None:
@@ -88,8 +91,9 @@ class LinkedList(object):
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # Best case: 0(1)
-        # Worst case: 0(1)
+
+        """ Best and Worst Case: 0(1) because we always start at the head node or
+            initialize it. """
 
         new_node = Node(item)
         if self.head is not None:
@@ -105,8 +109,11 @@ class LinkedList(object):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # Best case: 0(1) under the condition that the first node is what we are looking for or if there's only one item in the linked list
-        # Worst case: 0(n) under the condition that the nth node is what we are looking for
+
+        """ Best case: 0(1) under the condition that the first node is what we
+            are looking for or if there's only one item in the linked list
+             Worst case: 0(n) under the condition that the nth node is what we are
+             looking for. """
 
         node = self.head
         while node is not None:
@@ -121,9 +128,11 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # Best case: 0(1) under the condition that the first node is what we are "deleting" or if there's only one item in the linked list
-        # Worst case: 0(n) under the condition that the nth node is what we are "deleting"
-
+        
+        """ Best case: 0(1) under the condition that the first node is what we
+            are "deleting" or if there's only one item in the linked list
+            Worst case: 0(n) under the condition that the nth node is what we
+            are "deleting"""
 
         current_node = self.head
         previous_node = None
