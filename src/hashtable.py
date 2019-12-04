@@ -95,7 +95,7 @@ class HashTable(object):
         index = self._bucket_index(key)
         bucket = self.buckets[index]
 
-        data = bucket.find(lambda item: item [0] == key)
+        data = bucket.find(lambda item: item[0] == key)
 
         return data is not None
 
@@ -114,7 +114,7 @@ class HashTable(object):
         # Hint: raise KeyError('Key not found: {}'.format(key))
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        node = bucket.find(lambda item: item [0] == key)
+        node = bucket.find(lambda item: item[0] == key)
 
         if node is not None:
             return node[1]
@@ -136,7 +136,7 @@ class HashTable(object):
         # TODO: Otherwise, insert given key-value entry into bucket
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        node = bucket.find(lambda item: item [0] == key)
+        node = bucket.find(lambda item: item[0] == key)
 
         if node is not None:
             bucket.delete(node)
@@ -161,7 +161,7 @@ class HashTable(object):
         # Hint: raise KeyError('Key not found: {}'.format(key))
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        node = bucket.find(lambda item: item [0] == key)
+        node = bucket.find(lambda item: item[0] == key)
 
         if node is not None:
             bucket.delete(node)
