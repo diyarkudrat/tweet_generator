@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from sampling import main_sample, prob_word, get_count, sentence
+from markov_chain import MarkovChain
 from histogram import histogram_dict, read_file
 from pymongo import MongoClient
 
@@ -17,14 +18,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    text_file = read_file('histo_sample_song.txt')
-    histogram = histogram_dict(text_file)
-    count = get_count(histogram_dict(text_file))
-    total = len(text_file)
+    words_list = read_file('sample_book.txt')
+    # histogram = histogram_dict(text_file)
+    # count = get_count(histogram_dict(text_file))
+    # total = len(text_file)
+    markov_chain = MarkovChain(words_list=words_list)
+
 
     # ' '.join(sentence(count, total, histogram))
-    rand_sentence = sentence(count, total, histogram)
-    return render_template('index.html', rand_sentence=rand_sentence)
+    return markov_chain.sentence_gen()
+    return render_template('index.html', markov_chain=markov_chain)
 
 
 if __name__ == '__main__':
