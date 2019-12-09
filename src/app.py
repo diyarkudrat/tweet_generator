@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from sampling import main_sample, prob_word, get_count, sentence
-from markov_chain import MarkovChain
+from second_order_markov_chain import MarkovChain
 from histogram import histogram_dict, read_file
 from pymongo import MongoClient
 
@@ -12,21 +12,34 @@ client = MongoClient(host=host)
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
+favorites = db.favorites
+
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     words_list = read_file('sample_book.txt')
-
     markov_chain = MarkovChain(words_list=words_list)
 
+    length = 10
+    if request.args.get('sentence length'):
+        length = int(request.args.get('sentence_length'))
 
-    # ' '.join(sentence(count, total, histogram))
-    return markov_chain.sentence_gen()
-    return render_template('index.html', markov_chain=markov_chain)
+    if request.args.get('favorite') is not None:
+        favorites.insert_one(
+                {'sentence': markov_chain.sentence,
+                 'likes': 0
+                })
+
+
+    sentence = markov_chain.sentence_gen(length=length)
+    favorites_list = favorites.find()
+    print(favorites_list)
+
+    return render_template('index.html', sentence=sentence, favorites=favorites_list)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
