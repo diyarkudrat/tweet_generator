@@ -65,5 +65,3 @@ if __name__ == "__main__":
 
     print(markov_chain)
     print(markov_chain.sentence_gen())
-
-    # print(markov_chain(words_list))
