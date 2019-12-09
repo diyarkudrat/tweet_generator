@@ -1,5 +1,6 @@
 from dictogram import Dictogram
 import random
+from string import punctuation
 
 
 def cleanup_text_file(file_name):
@@ -27,20 +28,24 @@ class MarkovChain(dict):
             self['start'] = Dictogram(['the'])
             self['end'] = Dictogram(['.'])
 
-
     def create_markov_chain(self, words_list):
 
-        for index, word in enumerate(words_list):
+        for index in range(len(words_list) - 2):
 
-            if self.get(word) == None:
-                self[word] = Dictogram()
+            first_word = words_list[index]
+            middle_word = words_list[index + 1]
+            last_word = words_list[index + 2]
 
-            if index + 1 < len(words_list) - 1:
-                next = words_list[index + 1]
-                self.get(word).add_count(next)
+            if (first_word, middle_word) not in self:
+                dict = Dictogram([(middle_word, last_word)])
+                self[(first_word, middle_word)] = dict
 
+            else:
+                self[(first_word, middle_word)].add_count((middle_word, last_word))
 
-    def sentence_gen(self, length = 10):
+        # return self.dict_histogram
+
+    def sentence_gen(self, length=10):
 
         sampled_word = random.choice(list(self.get('start')))
 
@@ -57,13 +62,9 @@ class MarkovChain(dict):
         return sentence
 
 
-
 if __name__ == "__main__":
-
     words_list = cleanup_text_file('sample_book.txt')
-    markov_chain = MarkovChain(words_list = words_list)
+    markov_chain = MarkovChain(words_list)
 
     print(markov_chain)
     print(markov_chain.sentence_gen())
-
-    # print(markov_chain(words_list))
