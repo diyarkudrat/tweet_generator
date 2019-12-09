@@ -19,9 +19,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     words_list = read_file('sample_book.txt')
-    # histogram = histogram_dict(text_file)
-    # count = get_count(histogram_dict(text_file))
-    # total = len(text_file)
+
     markov_chain = MarkovChain(words_list=words_list)
 
 
