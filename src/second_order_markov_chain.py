@@ -26,8 +26,10 @@ class MarkovChain(dict):
 
         if words_list is not None:
             self.create_markov_chain(words_list)
-            self['start'] = Dictogram(['the'])
+            self['start'] = Dictogram(['The'])
             self['end'] = Dictogram(['.'])
+
+        self.sentence = None
 
     def create_markov_chain(self, words_list):
 
@@ -74,9 +76,9 @@ class MarkovChain(dict):
             # subtract 1 from length
             length -= 1
 
+        self.sentence =  sentence + end_word
+        return self.sentence
 
-
-        return sentence + end_word
 
 
 if __name__ == "__main__":
