@@ -1,6 +1,7 @@
 from dictogram import Dictogram
 import random
-from string import punctuation
+
+
 
 
 def cleanup_text_file(file_name):
@@ -43,28 +44,44 @@ class MarkovChain(dict):
             else:
                 self[(first_word, middle_word)].add_count((middle_word, last_word))
 
-        # return self.dict_histogram
+    def get_tuples(self, word):
+        tuples = []
+
+        for tuple in list(self):
+            if word in tuple[0]:
+                tuples.append(tuple)
+
+        return tuples
 
     def sentence_gen(self, length=10):
 
-        sampled_word = random.choice(list(self.get('start')))
+        start_word=random.choice(list(self.get('start')))
+        end_word=random.choice(list(self.get('end')))
 
-        sentence = sampled_word
+        sampled_word = random.choice(random.choice(list(self)))
 
-        for item in range(length - 1):
-            sampled_word = self[sampled_word].sample()
+        sentence = start_word + ' ' + sampled_word
 
-            sentence += " " + sampled_word
+        while length > 0:
+            # get all tuples with sampled_word
+            tuples = self.get_tuples(sampled_word)
+            # choose a random tuple
+            new_tuple = random.choice(tuples)
+            # add second word to sentence
+            sentence = sentence + ' ' + new_tuple[1]
+            # random word = new sampled_word
+            sampled_word = new_tuple[1]
+            # subtract 1 from length
+            length -= 1
 
 
-        sentence += random.choice(list(self.get('end')))
 
-        return sentence
+        return sentence + end_word
 
 
 if __name__ == "__main__":
     words_list = cleanup_text_file('sample_book.txt')
     markov_chain = MarkovChain(words_list)
 
-    print(markov_chain)
+    # print(markov_chain)
     print(markov_chain.sentence_gen())
