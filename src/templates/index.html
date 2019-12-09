@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<!--Entire View Port-->
+
+<div class="container-fluid">
+  <div class="row">
+    <!--Left Side of View Port-->
+    <div class="col-md-8">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <!--Stores Content-->
+          <div class="col-12 white-text">
+            <div class="row">
+              <div class="col-md-4">
+                  <h1 class='text-center'>Tweet Generator!!</h1>
+                  <br>
+              </div>
+              <div class="col-md-8 form-group">
+              <form action='/' class="row justify-content-center">
+                  <div class="col-xs-3 p-2">
+                    <button type="submit" name="generate" class="btn btn-primary">Generate!</button>
+                  </div>
+                  <div class="col-xs-3 p-2">
+                    </div>
+                    <div class="col-xs-4 form-inline p-2">
+                    <label for="sentence">Sentence Length: </label>
+                    <input type="number" name="sentence length"class="form-control" id="sentence" placeholder="10">
+                    </div>
+                </form>
+                </div>
+                </div>
+                <hr>
+                <div class="card text-center">
+                  <div class="card-header">
+                    Tweet!
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ sentence }}</h5>
+                            <button type="submit" name="favorite" class="btn btn-primary">Favorite</button>
+                  </div>
+                  <div class="card-footer text-muted">
+                    2 days ago
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Right Side of View Port-->
+    <div class="col-md-4 border-left">
+      <div class="container-fluid">
+        <div class="row ">
+          <!--Favorites Display-->
+          <div class="col-12 justify-content-end">
+            <div class="row white-text">
+              <h1>Favorites</h1>
+            </div>
+            <hr>
+            <!-- Favorited items -->
+            <ul class="list-group">
+              {% for favorite in favorites %}
+                <li class="list-group-item d-flex justify-content-between align-items-center border-change rounded-pill row">
+                  <div class="col-md-8">
+                    <span> {{favorite.sentence}} </span>
+                  </div>
+                  <div class="col-md-4 justify-content-end">
+                    <button class="up-vote btn btn-light">Like: {{favorite.likes}}</button>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+{% endblock %}
