@@ -1,7 +1,6 @@
 # from bson.objectid import ObjectId
 from flask import Flask, render_template, request, redirect, url_for
 import os
-from sampling import main_sample, prob_word, get_count, sentence
 from second_order_markov_chain import MarkovChain
 from histogram import histogram_dict, read_file
 from pymongo import MongoClient
