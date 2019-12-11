@@ -27,30 +27,27 @@
       </div>
   </form>
 
-  <!--Right Side of View Port-->
-      <div class="col-md-4 border-left">
-        <div class="container-fluid">
-          <div class="row ">
-            <!--Favorites Display-->
-            <div class="col-12 justify-content-end">
-              <div class="row white-text">
-                <h1>Favorites</h1>
-              </div>
-              <hr>
-              <!-- Favorited items -->
-              <ul class="list-group">
-                {% for favorite in favorites %}
-                  <li>
-                    <div class="col-md-8">
-                      <span> {{favorite.sentence}} </span>
-                    </div>
-                  </li>
-                {% endfor %}
+
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="justify-content-end">
+        <div class="row white-text">
+          <h1>Favorites</h1>
+        </div>
+        <hr>
+        <ul class="list-group">
+            {% for favorite in favorited %}
+            <div>
+              <ul>
+                <li>
+                  {{ favorite.sentence }}
+                </li>
               </ul>
             </div>
-          </div>
+            {% endfor %}
         </div>
       </div>
+    </div>
 
 
 
