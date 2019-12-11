@@ -4,7 +4,7 @@ from second_order_markov_chain import MarkovChain, cleanup_text_file
 from pymongo import MongoClient
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/markov')
-client = MongoClient(host=host)
+client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
 favorited = db.favorited
