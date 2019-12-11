@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from src.second_order_markov_chain import MarkovChain
+from src.second_order_markov_chain import MarkovChain, cleanup_text_file
 # from pymongo import MongoClient
 
 # host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/markov')
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    words_list = read_file('sample_book.txt')
+    words_list = cleanup_text_file('sample_book.txt')
     markov_chain = MarkovChain(words_list=words_list)
 
     length = 10
