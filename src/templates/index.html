@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+  <h1 class="text-center">Wise Words from Coloring Book</h1>
+  <br>
+  <br>
+  <br>
+
+  <h4 class="text-center" id="sentence"> {{ sentence }}</h4>
+  <br>
+  <br>
+  <br>
+
+  <form action='/' class="row justify-content-center">
+    <div class="col-xs-3 p-2">
+      <button type="submit" name="generate" class="btn btn-primary">Generate!</button>
+    </div>
+    <div class="col-xs-3 p-2">
+       <button type="submit" name="favorite" class="btn btn-warning">Favorite</button>
+    </div>
+      <div class="col-xs-4 form-inline p-2">
+      <label for="sentence">Sentence Length: </label>
+      <input type="number" name="sentence length"class="form-control" id="sentence" placeholder="10">
+      </div>
+  </form>
+
+  <!--Right Side of View Port-->
+      <div class="col-md-4 border-left">
+        <div class="container-fluid">
+          <div class="row ">
+            <!--Favorites Display-->
+            <div class="col-12 justify-content-end">
+              <div class="row white-text">
+                <h1>Favorites</h1>
+              </div>
+              <hr>
+              <!-- Favorited items -->
+              <ul class="list-group">
+                {% for favorite in favorites %}
+                  <li>
+                    <div class="col-md-8">
+                      <span> {{favorite.sentence}} </span>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock %}
