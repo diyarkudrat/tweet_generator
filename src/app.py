@@ -12,6 +12,7 @@ favorited = db.favorited
 
 app = Flask(__name__)
 
+
 words_list = cleanup_text_file('chance_lyrics.txt')
 markov_chain = MarkovChain(words_list=words_list)
 
