@@ -1,6 +1,5 @@
-# from bson.objectid import ObjectId
 from flask import Flask, render_template, request
-# import os
+
 from src.second_order_markov_chain import MarkovChain
 # from pymongo import MongoClient
 
