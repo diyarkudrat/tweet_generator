@@ -11,7 +11,7 @@ def cleanup_text_file(file_name):
 
     words_list = []
     for word in text:
-        word = word.strip(".@'/").lower()
+        word = word.strip(".@'/+[]()""br<>").lower()
         words_list.append(word)
 
     return words_list
@@ -55,7 +55,7 @@ class MarkovChain(dict):
 
         return tuples
 
-    def sentence_gen(self, length=10):
+    def sentence_gen(self, length):
 
         start_word=random.choice(list(self.get('start')))
         end_word=random.choice(list(self.get('end')))
@@ -83,8 +83,8 @@ class MarkovChain(dict):
 
 
 if __name__ == "__main__":
-    words_list = cleanup_text_file('sample_book.txt')
+    words_list = cleanup_text_file('chance_lyrics.txt')
     markov_chain = MarkovChain(words_list)
 
     # print(markov_chain)
-    print(markov_chain.sentence_gen())
+    print(markov_chain.sentence_gen(10))
