@@ -13,4 +13,5 @@ def cleanup(file_name):
             for word in line.split():
                 word_list.append(word)
 
+
     return word_list
