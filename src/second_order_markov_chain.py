@@ -11,7 +11,7 @@ def cleanup_text_file(file_name):
 
     words_list = []
     for word in text:
-        word = word.strip(".@'/+[]()""br<>").lower()
+        word = word.strip(".@'?/+[]()""br<>").lower()
         words_list.append(word)
 
     return words_list

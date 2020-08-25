@@ -2,12 +2,15 @@ from flask import Flask, render_template, request, jsonify
 import os
 from second_order_markov_chain import MarkovChain, cleanup_text_file
 from pymongo import MongoClient
+from utils import cleanup
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/markov')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
 favorited = db.favorited
+album_covers = db.album_covers
+
 
 
 app = Flask(__name__)
